@@ -1,0 +1,243 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>StyleStep</title>
+        <!-- enlace a la hoja css-->
+        <link rel="stylesheet" href="{% static 'css/carrito.css' %}">
+        <link rel="icon" href="img1/loglo_pagina.png">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    </head>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="{% static 'img1/logoimagen.png' %}" alt="Logo" width="70" height="70">
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Marcas
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="{% url 'nike' %}">Nike</a></li>
+                                <li><a class="dropdown-item" href="{% url 'adidas' %}">Adidas</a></li>
+                                <li><a class="dropdown-item" href="{% url 'vans' %}">Vans</a></li>                                                               
+                                <li><a class="dropdown-item" href="{% url 'new' %}">New BALANCE</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'registro' %}">Registro</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+                <li class="nav-item">
+                    <a class="boton-carrito" href="{% url 'carrito' %}"><span id="numerito" class="numerito"> 0</span>
+                        <svg
+                        xmlns="img1/carrito.web.png"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke-width="1.5"
+                        stroke="currentColor"
+                        class="icon-cart"
+                        >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                        />
+                        </svg>
+                    </a>
+                    </li>
+            </div>
+        </nav>
+    </header>
+<body data-index-url="{% url 'index' %}">
+    <!-- Carrito de compras -->
+    <div id="total-container">Total: $<span id="total"></span></div>
+    <div class="custom-div">
+        <button class="boton-vaciar-carrito">Vaciar carrito</button>
+        <button class="boton-comprar">Comprar</button>
+    </div>
+    <div class="carrito-productos" id="productos-en-carrito-container"> </div>
+    
+    <!-- script carrito -->
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var agregarBtns = document.querySelectorAll(".fa-sharp.fa-solid.fa-cart-plus");
+        var numerito = document.getElementById("numerito");
+        var cantidadEnCarrito = parseInt(localStorage.getItem("cantidadEnCarrito")) || 0;
+        numerito.textContent = cantidadEnCarrito;
+      
+        function agregarAlCarrito() {
+            cantidadEnCarrito++;
+            numerito.textContent = cantidadEnCarrito;
+            localStorage.setItem("cantidadEnCarrito", cantidadEnCarrito);
+      
+            var producto = this.closest(".product");
+      
+            var productosEnCarrito = JSON.parse(localStorage.getItem("productosEnCarrito")) || [];
+            productosEnCarrito.push(producto.outerHTML);
+            localStorage.setItem("productosEnCarrito", JSON.stringify(productosEnCarrito));
+      
+            agregarAlCarritoVisual(producto);
+        }
+      
+        agregarBtns.forEach(function(btn) {
+            btn.addEventListener("click", agregarAlCarrito);
+        });
+      
+        var botonComprar = document.querySelector(".boton-comprar");
+        botonComprar.addEventListener("click", function() {
+            alert("¡Muchas gracias por su compra!");
+            document.getElementById("productos-en-carrito-container").innerHTML = "";
+            numerito.textContent = "0";
+            localStorage.removeItem("productosEnCarrito");
+            localStorage.setItem("cantidadEnCarrito", "0");
+      
+            // Obtener la URL de índice del atributo de datos
+            var indexUrl = document.body.getAttribute('data-index-url');
+      
+            // Redirigir a la página de índice
+            if (indexUrl) {
+                window.location.href = indexUrl;
+            } else {
+                console.error("No se pudo encontrar la URL de índice");
+            }
+        });
+      
+        function validarBotonComprar(cantidadProductos) {
+            if (cantidadProductos === 0) {
+                botonComprar.disabled = true;
+            } else {
+                botonComprar.disabled = false;
+            }
+        }
+      
+        validarBotonComprar(cantidadEnCarrito);
+      });
+      
+      
+      function mostrarTotalProductos() {
+        var total = calcularTotalProductos();
+        var totalElemento = document.getElementById("total");
+        totalElemento.textContent = total.toFixed(2); // Formatea el total a dos decimales
+      }
+      
+      function calcularTotalProductos() {
+        var productos = document.querySelectorAll(".product");
+        var total = 0;
+        productos.forEach(function(producto) {
+            var precioTexto = producto.querySelector(".producto__price").textContent;
+            var precioNumerico = parseFloat(precioTexto.replace("$", "").replace(",", ""));
+            total += precioNumerico;
+        });
+        return total;
+      }
+      
+      // Llama a la función para mostrar el total cuando se cargue la página
+      window.addEventListener("DOMContentLoaded", function() {
+        mostrarTotalProductos();
+      });
+      
+      
+      function agregarAlCarritoVisual(producto) {
+        var nuevoProducto = document.createElement("div");
+        nuevoProducto.classList.add("product", "producto-en-carrito");
+        nuevoProducto.innerHTML = `
+        <div class="product" style="width: 14rem">
+            <img src="adidas/ad1.png" alt="" class="img-product" />
+            <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+            <div class="producto__description">
+                <h6 class="product_categoria">ADIDAS</h6>
+                <h5 class="product__title">MEDIUM</h5>
+                <h5 class="product__title">ROJA</h5>
+                <span class="producto__price">$99.990</span>
+            </div>
+        </div>
+        `;
+        var productosEnCarritoContainer = document.getElementById("productos-en-carrito-container");
+        productosEnCarritoContainer.appendChild(nuevoProducto);
+      }
+      
+      document.addEventListener("DOMContentLoaded", function() {
+        var productosEnCarritoContainer = document.getElementById("productos-en-carrito-container");
+        var numerito = document.getElementById("numerito");
+        var vaciarBtn = document.querySelector(".boton-vaciar-carrito");
+      
+        function vaciarCarrito() {
+            if (productosEnCarritoContainer.children.length === 0) {
+                alert("Por favor, realice una compra.");
+                window.location.href = "{% url 'index' %}";
+                return;
+            }
+      
+            productosEnCarritoContainer.innerHTML = "";
+            var cantidadEnCarrito = 0;
+            numerito.textContent = cantidadEnCarrito;
+            localStorage.removeItem("productosEnCarrito");
+            localStorage.setItem("cantidadEnCarrito", cantidadEnCarrito);
+      
+            mostrarTotalProductos();
+        }
+      
+        vaciarBtn.addEventListener("click", vaciarCarrito);
+      
+        var productosEnCarrito = JSON.parse(localStorage.getItem("productosEnCarrito")) || [];
+        var cantidadEnCarrito = productosEnCarrito.length;
+        numerito.textContent = cantidadEnCarrito;
+      
+        productosEnCarrito.forEach(function(productoHTML) {
+            var nuevoProducto = document.createElement("div");
+            nuevoProducto.innerHTML = productoHTML;
+            var boton = nuevoProducto.querySelector(".fa-sharp.fa-solid.fa-cart-plus");
+            if (boton) {
+                boton.remove();
+            }
+            productosEnCarritoContainer.appendChild(nuevoProducto);
+        });
+      });
+      
+      document.querySelectorAll('.fa-sharp.fa-solid.fa-cart-plus').forEach(function(boton) {
+        boton.addEventListener('click', function() {
+            var nombreProducto = this.closest('.card').querySelector('h3').textContent;
+            alert("Su producto " + nombreProducto + " se ha agregado al carrito");
+        });
+      });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const addToCartBtn = document.getElementById("addToCartBtn");
+      const toast = new bootstrap.Toast(document.getElementById("liveToast"));
+
+      addToCartBtn.addEventListener("click", () => {
+        toast.show();
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+</body>
+</html>

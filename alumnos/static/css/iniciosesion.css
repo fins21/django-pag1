@@ -1,0 +1,205 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200; 1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "popins", sans-serif;
+  color: white;
+  margin-top: 15px;
+}
+
+body {
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  padding: 10px;
+  align-items: center;
+  margin: 0;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(img/Lasrial.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.container {
+  background: linear-gradient(
+    135deg,
+    rgba(75, 74, 74, 0.432),
+    rgba(165, 165, 165, 0)
+  );
+  backdrop-filter: blur(25px);
+  border-radius: 5px;
+  border: 1px solid rgba(177, 177, 177, 0.18);
+  padding: 30px 50px;
+  max-width: 900px;
+  text-align: center;
+  border: 3px solid rgb(146, 159, 186); /* Define el borde sólido de 1 píxel de grosor y color negro */
+  padding: 10px;
+  height: 600px;
+}
+
+.container .title {
+  font-size: 40px;
+  font-weight: 500;
+  position: relative;
+}
+
+.container .title::before {
+  content: "";
+  position: absolute;
+  left: 337px;
+  bottom: 0;
+  height: 2px;
+  width: 200px;
+  background-color: rgb(146, 159, 186);
+}
+
+.container form .user-details {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+form .user-details .input-box {
+  width: calc(100% / 2 - 20px);
+}
+
+.user-details .input-box .details {
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.user-details .input-box input {
+  height: 45px;
+  width: 100%;
+}
+
+#genero option {
+  color: rgb(0, 0, 0); /* Hacer que el texto de las opciones sea negro */
+}
+
+#genero {
+  width: calc(40% - 170px);
+  margin-right: 100px;
+  margin-top: 50px;
+  color: rgb(255, 255, 255);
+}
+
+label[for="genero"] {
+  margin-top: 60px;
+  color: rgb(255, 255, 255);
+}
+
+.user-details .input-box input,
+.user-details .input-box select {
+  height: 45px;
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.432),
+    rgba(0, 0, 0, 0.432)
+  );
+  background-color: transparent;
+  border: 3px solid rgb(146, 159, 186);
+}
+
+.input-style {
+  height: 45px;
+  width: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.432),
+    rgba(0, 0, 0, 0.432)
+  );
+  background-color: transparent;
+  border: 1px solid rgb(255, 255, 255);
+}
+
+::placeholder {
+  color: rgb(255, 255, 255);
+}
+
+.user-details .input-box input,
+.user-details .input-box select {
+  border: 1px solid rgb(114, 129, 163);
+  border-radius: 5px;
+}
+
+.button input[type="submit"] {
+  background: transparent;
+  border: 1px solid white;
+  color: rgb(146, 159, 186);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  padding: 15px 10px !important;
+  border-radius: 3px !important;
+  margin-right: 300px;
+  width: 300px;
+}
+
+.button input[type="submit"]:hover {
+  background: white;
+  color: black;
+}
+
+.button {
+  margin-top: 40px; /* Ajusta el valor según sea necesario */
+  margin-left: 570px;
+}
+
+.user-details .input-box input::placeholder {
+  padding-left: 5px; /* Ajusta el valor según sea necesario */
+}
+
+.user-details .input-box input {
+  padding-left: 6px; /* Ajusta el valor según sea necesario */
+}
+
+.button a.btn {
+  background: transparent;
+  border: 1px solid white;
+  color: rgb(255, 255, 255);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  padding: 15px 10px !important;
+  border-radius: 3px !important;
+  margin-right: 300px;
+  width: 300px;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  margin-top: -600px;
+  margin-left: -1170px;
+}
+
+.button a.btn:hover {
+  background: white;
+  color: black;
+}
+
+.button input[type="submit"],
+.button a.btn {
+  background: transparent;
+  border: 1px solid white;
+  color: rgb(255, 255, 255);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px;
+  padding: 15px 10px !important;
+  border-radius: 3px !important;
+  width: 300px;
+  text-align: center;
+  text-decoration: none;
+}

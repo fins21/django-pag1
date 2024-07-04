@@ -1,0 +1,306 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+*::-webkit-scrollbar {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    display: none;
+}
+/* tipo de letra*/
+body {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.logo_grande {
+    position: absolute;
+    z-index: 1;
+    top: 30px;
+    left: 40px;
+    height: 7vh;
+}
+.navbar {
+    display: flex;
+    margin-right: 20px;
+    
+}
+.boton-carrito {
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 20px;    
+    border-radius: 50%;
+    padding: 5px;
+    text-decoration:none; /* Elimina el subrayado de los enlaces */
+    color: #000;
+}
+.boton-carrito:hover {
+    color: rgb(146, 159, 186);
+}
+
+
+nav {
+    display: inline-block;
+    margin: 0 30px;
+    padding: 15px;
+    font-weight: 700;
+    justify-content: space-between;
+    border-radius: 160px;
+}
+@media (max-width: 768px) {
+    nav {
+        border-radius: 0px;
+    }
+}
+nav ul a {
+    border-radius: 110px; /* Aplica border-radius constantemente */
+}
+@media (max-width: 768px) {
+    nav ul a {
+        display: none; /* Aplica border-radius constantemente */
+    }
+}
+nav ul a:hover {
+    background-color: rgb(146, 159, 186);
+    color: #fff;
+}
+
+.navbar-nav .nav-item {
+      margin-right: 180px; /* Ajusta el espacio a tu preferencia */
+}
+.container {
+    display: flex;
+    justify-content: left;
+    margin-left: 200px;
+
+}
+.navbar-brand {
+      margin-right: auto; /* Empuja todo lo demás hacia la derecha */
+      padding-right: 20px; /* Ajusta el espacio a la derecha de la imagen */
+}
+header nav a {
+    font-size: 20px;
+}
+header {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0 40px 0;
+    background-color: rgb(146, 159, 186);
+}
+.icon-cart {
+    width: 40px;
+    height: 40px;
+}
+
+
+/* CARRITO*/
+
+.icon-cart {
+    width: 40px;
+    height: 40px;
+    stroke: #000;
+}
+
+.icon-cart:hover {
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* Header */
+
+.container-icon {
+    position: relative;
+}
+
+.count-products {
+    position: absolute;
+    top: 55%;
+    right: 0;
+
+    background-color: #000;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+#contador-productos {
+    font-size: 12px;
+}
+.container-cart-products {
+    position: absolute;
+    top: 50px;
+    right: 0;
+
+    background-color: #fff;
+    width: 400px;
+    z-index: 1;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+.cart-product {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.info-cart-product {
+    display: flex;
+    justify-content: space-between;
+    flex: 0.8;
+}
+.titulo-producto-carrito {
+    font-size: 20px;
+}
+.precio-producto-carrito {
+    font-weight: 700;
+    font-size: 20px;
+    margin-left: 10px;
+}
+.cantidad-producto-carrito {
+    font-weight: 400;
+    font-size: 20px;
+}
+.icon-close {
+    width: 25px;
+    height: 25px;
+}
+.icon-close:hover {
+    stroke: red;
+    cursor: pointer;
+}
+.cart-total {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    gap: 20px;
+}
+.cart-total h3 {
+    font-size: 20px;
+    font-weight: 700;
+}
+.total-pagar {
+    font-size: 20px;
+    font-weight: 900;
+}
+.hidden-cart {
+    display: none;
+}
+/*menu*/
+
+/* PRODUCTOS */
+.container {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.product img {
+  width: 220px;
+  height: 280px;
+  border-radius: 30px;
+  background-color: rgb(218, 218, 218);
+}
+.product {
+  margin: 115px;
+}
+.product__title {
+  text-align: unset;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin: 0%;
+  font-weight: bold;
+}
+.producto__price {
+  color: rgb(91, 132, 219);
+  font-weight: bold;
+  margin: 0%;
+  text-align: center;
+}
+
+.product h6 {
+  color: rgb(0, 0, 0);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.product__description {
+  width: 220px;
+  height: 280px;
+  border-radius: 30px;
+  background-color: aliceblue;
+}
+.fa-sharp {
+  width: 80%;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 24px;
+  background-color: #fff;
+  border-width: 1px;
+  font-family: sans-serif;
+}
+.fa-sharp:hover {
+  background-color: rgb(146, 159, 186);
+  font-family: sans-serif;
+}
+
+.bg-success {
+  color: azure;
+}
+.Page__navigation__example {
+  color: black;
+}
+
+/* HASTA AQUI */
+/*tips barra amarilla*/
+.container-tips {
+  text-align: center;
+
+  background-color: #fff700;
+}
+.tip i {
+  font-size: 1.5em;
+  padding: 20px 0;
+}
+
+/*barra negra*/
+.container-final {
+  text-align: center;
+  background-color: rgb(16, 15, 15);
+}
+.final__title {
+  color: white;
+}
+.final__txt {
+  color: white;
+}
+.col-sm pi {
+  color: #fff;
+  font-size: 1.5em;
+  cursor: pointer;
+  margin-top: 10px;
+  padding: 5px 25px;
+}
+.final__txt li {
+  display: block;
+  padding: 5px 25px;
+  cursor: pointer;
+  color: #fff;
+}
+.final__btn {
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+}
+.login__icon {
+  color: #0f0d0d;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 5px 20px;
+  display: block;
+}

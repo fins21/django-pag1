@@ -1,0 +1,458 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StyleStep</title>
+    <!-- enlace a la hoja css-->
+    <link rel="stylesheet" href="{% static 'css/new.css' %}" />
+    <link rel="icon" href="img1/stylestpe.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+              <a class="navbar-brand" href="#">
+                  <img src="{% static 'img1/logoimagen.png' %}" alt="Logo" width="70" height="70">
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                  <ul class="navbar-nav">
+                      <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="{% url 'index' %}">Inicio</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
+                      </li>
+                      <li class="nav-item dropdown">
+                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                              Marcas
+                          </a>
+                          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                              <li><a class="dropdown-item" href="{% url 'nike' %}">Nike</a></li>
+                              <li><a class="dropdown-item" href="{% url 'adidas' %}">Adidas</a></li>
+                              <li><a class="dropdown-item" href="{% url 'vans' %}">Vans</a></li>                                                               
+                              <li><a class="dropdown-item" href="{% url 'new' %}">New BALANCE</a></li>
+                          </ul>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="{% url 'registro' %}">Registro</a>
+                      </li>
+                      
+                  </ul>
+              </div>
+              <li class="nav-item">
+                  <a class="boton-carrito" href="{% url 'carrito' %}"><span id="numerito" class="numerito"> 0</span>
+                      <svg
+                      xmlns="img1/carrito.web.png"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="icon-cart"
+                      >
+                      <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                      />
+                      </svg>
+                  </a>
+                  </li>
+          </div>
+      </nav>
+  </header>
+    <div id="addToCartBtn" class="card-container row row-cols-1 row-cols-md-2 row-cols-lg-3 g-0 py-5 mt-5">
+      <div class="product" style="width: 14rem">
+        <img src="{% static 'new/new-1.png' %}" alt="" class="img-product" />
+        <span
+          class="badge bg-secondary position-absolute translate-middle bg-warning"
+        ></span>
+
+        <div class="producto__description">
+          <h6 class="product_categoria">NEW BALANCE</h6>
+          <h5 class="product__title">MEDIUM</h5>
+          <h5 class="product__title">AZUL</h5>
+          <span class="producto__price">$99.990</span>
+          <button class="fa-sharp fa-solid fa-cart-plus">
+            <strong> AGREGAR AL CARRITO </strong>
+          </button>
+        </div>
+        </div>
+        <div class="product" style="width: 14rem">
+          <img src="{% static 'new/new-2.png' %}" alt="" class="img-product" />
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+          <div class="producto__description">
+            <h6 class="product_categoria">NEW BALANCE</h6>
+            <h5 class="product__title">MEDIUM</h5>
+            <h5 class="product__title">NEGRA</h5>
+            <span class="producto__price">$90.990</span>
+            <button class="fa-sharp fa-solid fa-cart-plus">
+              <strong> AGREGAR AL CARRITO </strong>
+            </button>
+          </div>
+        </div>
+        <div class="product" style="width: 14rem">
+          <img src="{% static 'new/new3.png' %}" alt="" class="img-product" />
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+          <div class="producto__description">
+            <h6 class="product_categoria">NEW BALANCE</h6>
+            <h5 class="product__title">MEDIUM</h5>
+            <h5 class="product__title">GRIS</h5>
+            <span class="producto__price">$90.990</span>
+            <button class="fa-sharp fa-solid fa-cart-plus">
+              <strong> AGREGAR AL CARRITO </strong>
+            </button>
+          </div>
+        </div>
+        <div class="product" style="width: 14rem">
+          <img src="{% static 'new/new4.png' %}" alt="" class="img-product" />
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+          <div class="producto__description">
+            <h6 class="product_categoria">NEW BALANCE</h6>
+            <h5 class="product__title">MEDIUM</h5>
+            <h5 class="product__title">AZUL OSCURO</h5>
+            <span class="producto__price">$80.990</span>
+            <button class="fa-sharp fa-solid fa-cart-plus">
+              <strong> AGREGAR AL CARRITO </strong>
+            </button>
+          </div>
+        </div>
+        <div class="product" style="width: 14rem">
+          <img src="{% static 'new/new5.png' %}" alt="" class="img-product" />
+          <div class="producto__description">
+            <h6 class="product_categoria">NEW BALANCE</h6>
+            <h5 class="product__title">MEDIUM</h5>
+            <h5 class="product__title">BLANCA</h5>
+            <span class="producto__price">$90.990</span>
+            <button class="fa-sharp fa-solid fa-cart-plus">
+              <strong> AGREGAR AL CARRITO </strong>
+            </button>
+          </div>
+        </div>
+        <div class="product" style="width: 14rem">
+          <img src="{% static 'new/new6.png' %}" alt="" class="img-product" />
+          <div class="producto__description">
+            <h6 class="product_categoria">NEW BALANCE</h6>
+            <h5 class="product__title">MEDIUM</h5>
+            <h5 class="product__title">GRIS</h5>
+            <span class="producto__price">$70.990</span>
+            <button class="fa-sharp fa-solid fa-cart-plus">
+              <strong> AGREGAR AL CARRITO </strong>
+            </button>
+          </div>
+        </div>
+        <div class="product" style="width: 14rem">
+          <img src="{% static 'new/new7.png' %}" alt="" class="img-product" />
+          <div class="producto__description">
+            <h6 class="product_categoria">NEW BALANCE</h6>
+            <h5 class="product__title">MEDIUM</h5>
+            <h5 class="product__title">PLATEADA</h5>
+            <span class="producto__price">$80.990</span>
+            <button class="fa-sharp fa-solid fa-cart-plus">
+              <strong> AGREGAR AL CARRITO </strong>
+            </button>
+          </div>
+        </div>
+        <div class="product" style="width: 14rem">
+          <img src="{% static 'new/new8.png' %}" alt="" class="img-product" />
+          <div class="producto__description">
+            <h6 class="product_categoria">NEW BALANCE</h6>
+            <h5 class="product__title">MEDIUM</h5>
+            <h5 class="product__title">CREMA</h5>
+            <span class="producto__price">$70.990</span>
+            <button class="fa-sharp fa-solid fa-cart-plus">
+              <strong> AGREGAR AL CARRITO </strong>
+            </button>
+          </div>
+        </div>
+        <div class="product" style="width: 14rem">
+          <img src="{% static 'new/new9.png' %}" alt="" class="img-product" />
+          <div class="producto__description">
+            <h6 class="product_categoria">NEW BALANCE</h6>
+            <h5 class="product__title">MEDIUM</h5>
+            <h5 class="product__title">BLANCA</h5>
+            <span class="producto__price">$90.990</span>
+            <button class="fa-sharp fa-solid fa-cart-plus">
+              <strong> AGREGAR AL CARRITO </strong>
+            </button>
+          </div>
+        </div>
+        <div class="product" style="width: 14rem">
+          <img src="{% static 'new/new10.png' %}" alt="" class="img-product" />
+          <div class="producto__description">
+            <h6 class="product_categoria">NEW BALANCE</h6>
+            <h5 class="product__title">MEDIUM</h5>
+            <h5 class="product__title">BLANCA CON NEGRO</h5>
+            <span class="producto__price">$110.990</span>
+            <button class="fa-sharp fa-solid fa-cart-plus">
+              <strong> AGREGAR AL CARRITO </strong>
+            </button>
+          </div>
+        </div>
+        <div class="product" style="width: 14rem">
+          <img src="{% static 'new/new11.png' %}" alt="" class="img-product" />
+          <div class="producto__description">
+            <h6 class="product_categoria">NEW BALANCE</h6>
+            <h5 class="product__title">MEDIUM</h5>
+            <h5 class="product__title">NEGRA</h5>
+            <span class="producto__price">$140.990</span>
+            <button class="fa-sharp fa-solid fa-cart-plus">
+              <strong> AGREGAR AL CARRITO </strong>
+            </button>
+          </div>
+        </div>
+        <div class="product" style="width: 14rem">
+          <img src="{% static 'new/new12.png' %}" alt="" class="img-product" />
+          <div class="producto__description">
+            <h6 class="product_categoria">NEW BALANCE</h6>
+            <h5 class="product__title">MEDIUM</h5>
+            <h5 class="product__title">NEGRA</h5>
+            <span class="producto__price">$100.990</span>
+            <button class="fa-sharp fa-solid fa-cart-plus">
+              <strong> AGREGAR AL CARRITO </strong>
+            </button>
+          </div>
+        </div>
+        <div class="product" style="width: 14rem">
+          <img src="{% static 'new/new13.png' %}" alt="" class="img-product" />
+          <div class="producto__description">
+            <h6 class="product_categoria">NEW BALANCE</h6>
+            <h5 class="product__title">MEDIUM</h5>
+            <h5 class="product__title">BLANCA</h5>
+            <span class="producto__price">$140.990</span>
+            <button class="fa-sharp fa-solid fa-cart-plus">
+              <strong> AGREGAR AL CARRITO </strong>
+            </button>
+          </div>
+        </div>
+        <div class="product" style="width: 14rem">
+          <img src="{% static 'new/new14.png' %}" alt="" class="img-product" />
+          <div class="producto__description">
+            <h6 class="product_categoria">NEW BALANCE</h6>
+            <h5 class="product__title">MEDIUM</h5>
+            <h5 class="product__title">BLANCA</h5>
+            <span class="producto__price">$140.990</span>
+            <button class="fa-sharp fa-solid fa-cart-plus">
+              <strong> AGREGAR AL CARRITO </strong>
+            </button>
+          </div>
+        </div>
+        <div class="product" style="width: 14rem">
+          <img src="{% static 'new/new15.png' %}" alt="" class="img-product" />
+          <div class="producto__description">
+            <h6 class="product_categoria">NEW BALANCE</h6>
+            <h5 class="product__title">HIGH</h5>
+            <h5 class="product__title">BLANCA</h5>
+            <span class="producto__price">$145.990</span>
+            <button class="fa-sharp fa-solid fa-cart-plus">
+              <strong> AGREGAR AL CARRITO </strong>
+            </button>
+          </div>
+        </div>
+        <div class="product" style="width: 14rem">
+          <img src="{% static 'new/new16.png' %}" alt="" class="img-product" />
+          <div class="producto__description">
+            <h6 class="product_categoria">NEW BALANCE</h6>
+            <h5 class="product__title">MEDIUM</h5>
+            <h5 class="product__title">BLANCA</h5>
+            <span class="producto__price">$95.990</span>
+            <button class="fa-sharp fa-solid fa-cart-plus">
+              <strong> AGREGAR AL CARRITO </strong>
+            </button>
+          </div>
+        </div>
+        </div>
+        
+    <footer
+      class="text-center text-lg-start text-white"
+      style="background-color: #929fba"
+    >
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <!-- Section: Links -->
+        <section class="">
+          <!--Grid row-->
+          <div class="row">
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+              <h6 class="text-uppercase mb-4 font-weight-bold">StyleStep</h6>
+              <p>
+                Todos los derechos reservados. No se permite la reproducción
+                total o parcial de este producto, ni su incorporación a un
+                sistema informático, ni su tranmisión en cualquier forma o por
+                cualquier medio sin autorización previa y por escrito de los
+                títulares del copyright. La infracción de dichos derechos puede
+                constituir en un delito contra la propiedad intelectual.
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <hr class="w-100 clearfix d-md-none" />
+
+            <!-- Grid column -->
+            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+              <h6 class="text-uppercase mb-4 font-weight-bold">
+                Metodos de pago
+              </h6>
+              <p>
+                <a class="text-white">Master Card</a>
+              </p>
+              <p>
+                <a class="text-white">Banco Estado</a>
+              </p>
+              <p>
+                <a class="text-white">Club Verde</a>
+              </p>
+              <p>
+                <a class="text-white">Pagos en efectivo 🤑</a>
+              </p>
+            </div>
+            <!-- Grid column -->
+
+            <hr class="w-100 clearfix d-md-none" />
+
+            <!-- Grid column -->
+            <hr class="w-100 clearfix d-md-none" />
+
+            <!-- Grid column -->
+            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+              <h6 class="text-uppercase mb-4 font-weight-bold">Links Utiles</h6>
+              <p><i class="fas fa-home mr-3"></i> papa juan XIII</p>
+              <p><i class="fas fa-envelope mr-3"></i> v.moyam@duocuc.cl</p>
+              <p><i class="fas fa-phone mr-3"></i> +56 9 3764 4737</p>
+              <p><i class="fas fa-print mr-3"></i> +56 9 7948 7679</p>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+              <h6 class="text-uppercase mb-4 font-weight-bold">Follow us</h6>
+
+              <!-- Facebook -->
+              <a
+                class="btn btn-primary btn-floating m-1"
+                style="background-color: #3b5998; border-radius: 45%"
+                href="#!"
+                role="button"
+                ><i class="bi bi-facebook"></i
+              ></a>
+
+              <!-- Twitter -->
+              <a
+                class="btn btn-primary btn-floating m-1"
+                style="background-color: #55acee; border-radius: 45%"
+                href="#!"
+                role="button"
+                ><i class="bi bi-twitter"></i
+              ></a>
+
+              <!-- Google -->
+              <a
+                class="btn btn-primary btn-floating m-1"
+                style="background-color: #dd4b39; border-radius: 45%"
+                href="https://encr.pw/QhvtV"
+                role="button"
+                ><i class="bi bi-google"></i
+              ></a>
+
+              <!-- Instagram -->
+              <a
+                class="btn btn-primary btn-floating m-1"
+                style="background-color: #ac2bac; border-radius: 45%"
+                href="https://www.instagram.com/04.vicente/?hl=en"
+                role="button"
+                ><i class="bi bi-instagram"></i
+              ></a>
+
+              <!-- Linkedin -->
+              <a
+                class="btn btn-primary btn-floating m-1"
+                style="background-color: #0082ca; border-radius: 45%"
+                href=""
+                role="button"
+                ><i class="bi bi-linkedin"></i
+              ></a>
+              <!-- Github -->
+              <a
+                class="btn btn-primary btn-floating m-1"
+                style="background-color: #333333; border-radius: 45%"
+                href="https://github.com/JaznaLaProfe/Programacion-BD/commits?author=JaznaLaProfe"
+                role="button"
+                ><i class="bi bi-github"></i
+              ></a>
+            </div>
+          </div>
+          <!--Grid row-->
+        </section>
+        <!-- Section: Links -->
+      </div>
+      <!-- Grid container -->
+
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2024 Copyright:
+        <a class="text-white" href="https://encr.pw/QhvtV">bold.cl</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        id="liveToast"
+        class="toast"
+        role="alert"
+        aria-live="assertive"
+        aria-atomic="true"
+      >
+        <div class="toast-header">
+          <strong class="me-auto">Producto Añadido</strong>
+          <small>Justo ahora</small>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="toast"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="toast-body">¡Has añadido un artículo al carrito!</div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const addToCartBtn = document.getElementById("addToCartBtn");
+      const toast = new bootstrap.Toast(document.getElementById("liveToast"));
+
+      addToCartBtn.addEventListener("click", () => {
+        toast.show();
+      });
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'js/carrito.js' %}"></script>
+
+  </body>
+</html>
