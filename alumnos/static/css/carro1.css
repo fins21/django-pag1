@@ -1,0 +1,227 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+* {
+  box-sizing: border-box;
+  
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+  "Lucida Sans", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header y Navbar */
+nav {
+  display: inline-block;
+  margin: 0 30px;
+  padding: 15px;
+  font-weight: 700;
+  justify-content: space-between;
+  border-radius: 160px;
+  
+}
+.nav-item{
+  list-style-type: none;
+  
+}
+@media (max-width: 768px) {
+  nav {
+      border-radius: 0px;
+  }
+}
+nav ul a {
+  border-radius: 110px; /* Aplica border-radius constantemente */
+}
+@media (max-width: 768px) {
+  nav ul a {
+      display: none; /* Aplica border-radius constantemente */
+  }
+}
+nav ul a:hover {
+  background-color: rgba(146, 159, 186, 0.752);
+  color: #fff;
+}
+
+.navbar-nav .nav-item {
+    margin-right: 180px; /* Ajusta el espacio a tu preferencia */
+}
+
+.navbar-brand {
+    margin-right: auto; /* Empuja todo lo demás hacia la derecha */
+    padding-right: 20px; /* Ajusta el espacio a la derecha de la imagen */
+}
+header nav a {
+  font-size: 20px;
+}
+header {
+  display: flex;
+  justify-content: center;
+  padding: 30px 0 40px 0;
+  background-color: rgb(146, 159, 186);
+}
+.icon-cart {
+  width: 40px;
+  height: 40px;
+}
+
+/* CARRITO */
+.table {
+  margin-top: 20px;
+}
+
+.table th {
+  background-color: #ffffff;
+  font-size: 18px;
+  border-bottom: 1px solid black;
+}
+
+.table td {
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+#productos-en-carrito-container img {
+  max-width: 100px;
+  height: auto;
+}
+
+/* BOTONES y TOTAL */
+.custom-div {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+#total-container {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+
+.boton-vaciar-carrito, .boton-comprar {
+  padding: 10px 20px;
+  background-color: #9f9f9f;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 5px;
+  width: 100%;
+}
+
+.boton-vaciar-carrito:hover {
+  background-color: #b500008d;
+}
+
+.boton-comprar:hover {
+  background-color: #00a8248d;
+}
+
+/* ALERTA CSS */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.modal-content a {
+  text-decoration: none;
+  color: black;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.volver {
+  background-color: #d8d8d8;
+  cursor: pointer;
+  border-radius: 30px;
+  padding: 10px 20px;
+  border: none;
+  margin-top: 10px;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo_grande {
+    margin-bottom: 10px;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .table th, .table td {
+    font-size: 14px;
+  }
+
+  #productos-en-carrito-container img {
+    max-width: 80px;
+  }
+
+  .custom-div {
+    margin-top: 20px;
+  }
+
+  #total-container {
+    font-size: 20px;
+  }
+
+  .boton-vaciar-carrito, .boton-comprar {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 576px) {
+  .table th, .table td {
+    font-size: 12px;
+  }
+
+  #productos-en-carrito-container img {
+    max-width: 60px;
+  }
+
+  #total-container {
+    font-size: 18px;
+  }
+
+  .boton-vaciar-carrito, .boton-comprar {
+    font-size: 12px;
+  }
+}

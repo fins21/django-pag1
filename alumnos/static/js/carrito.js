@@ -1,141 +1,165 @@
 document.addEventListener("DOMContentLoaded", function() {
-  var agregarBtns = document.querySelectorAll(".fa-sharp.fa-solid.fa-cart-plus");
-  var numerito = document.getElementById("numerito");
-  var cantidadEnCarrito = parseInt(localStorage.getItem("cantidadEnCarrito")) || 0;
-  numerito.textContent = cantidadEnCarrito;
+    var agregarBtns = document.querySelectorAll(".fa-sharp.fa-solid.fa-cart-plus");
+    var numerito = document.getElementById("numerito");
+    var cantidadEnCarrito = parseInt(localStorage.getItem("cantidadEnCarrito")) || 0;
+    numerito.textContent = cantidadEnCarrito;
 
-  function agregarAlCarrito() {
-      cantidadEnCarrito++;
-      numerito.textContent = cantidadEnCarrito;
-      localStorage.setItem("cantidadEnCarrito", cantidadEnCarrito);
+    function agregarAlCarrito() {
+        var producto = this.closest(".product");
+        var productoId = producto.dataset.id;
+        var productoNombre = producto.querySelector(".product__title").textContent;
+        var productoPrecio = parseFloat(producto.querySelector(".producto__price").textContent.replace("$", "").replace(/\./g, "").replace(",", "."));
+        var productoImagen = producto.querySelector(".img-product").src;
 
-      var producto = this.closest(".product");
+        var productosEnCarrito = JSON.parse(localStorage.getItem("productosEnCarrito")) || [];
 
-      var productosEnCarrito = JSON.parse(localStorage.getItem("productosEnCarrito")) || [];
-      productosEnCarrito.push(producto.outerHTML);
-      localStorage.setItem("productosEnCarrito", JSON.stringify(productosEnCarrito));
+        var productoExistente = productosEnCarrito.find(p => p.id === productoId);
 
-      agregarAlCarritoVisual(producto);
-  }
+        if (productoExistente) {
+            productoExistente.cantidad += 1;
+            productoExistente.totalPrecio += productoPrecio;
+        } else {
+            productosEnCarrito.push({
+                id: productoId,
+                nombre: productoNombre,
+                precio: productoPrecio,
+                cantidad: 1,
+                totalPrecio: productoPrecio,
+                imagen: productoImagen
+            });
+        }
 
-  agregarBtns.forEach(function(btn) {
-      btn.addEventListener("click", agregarAlCarrito);
-  });
+        cantidadEnCarrito++;
+        numerito.textContent = cantidadEnCarrito;
+        localStorage.setItem("cantidadEnCarrito", cantidadEnCarrito);
+        localStorage.setItem("productosEnCarrito", JSON.stringify(productosEnCarrito));
 
-  var botonComprar = document.querySelector(".boton-comprar");
-  botonComprar.addEventListener("click", function() {
-      alert("¡Muchas gracias por su compra!");
-      document.getElementById("productos-en-carrito-container").innerHTML = "";
-      numerito.textContent = "0";
-      localStorage.removeItem("productosEnCarrito");
-      localStorage.setItem("cantidadEnCarrito", "0");
+        actualizarVisualCarrito();
+    }
 
-      // Obtener la URL de índice del atributo de datos
-      var indexUrl = document.body.getAttribute('data-index-url');
+    agregarBtns.forEach(function(btn) {
+        btn.addEventListener("click", agregarAlCarrito);
+    });
 
-      // Redirigir a la página de índice
-      if (indexUrl) {
-          window.location.href = indexUrl;
-      } else {
-          console.error("No se pudo encontrar la URL de índice");
-      }
-  });
+    var botonVaciarCarrito = document.querySelector(".boton-vaciar-carrito");
+    botonVaciarCarrito.addEventListener("click", function() {
+        vaciarCarrito();
+    });
 
-  function validarBotonComprar(cantidadProductos) {
-      if (cantidadProductos === 0) {
-          botonComprar.disabled = true;
-      } else {
-          botonComprar.disabled = false;
-      }
-  }
+    var botonComprar = document.querySelector(".boton-comprar");
+    botonComprar.addEventListener("click", function() {
+        mostrarAgradecimiento();
+        vaciarCarrito();
+    });
 
-  validarBotonComprar(cantidadEnCarrito);
-});
+    function mostrarAgradecimiento() {
+        var modal = document.getElementById("modal");
+        modal.style.display = "block";
+    }
 
+    var spanCerrar = document.getElementsByClassName("close")[0];
+    spanCerrar.onclick = function() {
+        var modal = document.getElementById("modal");
+        modal.style.display = "none";
+    }
 
-function mostrarTotalProductos() {
-  var total = calcularTotalProductos();
-  var totalElemento = document.getElementById("total");
-  totalElemento.textContent = total.toFixed(2); // Formatea el total a dos decimales
-}
+    window.onclick = function(event) {
+        var modal = document.getElementById("modal");
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 
-function calcularTotalProductos() {
-  var productos = document.querySelectorAll(".product");
-  var total = 0;
-  productos.forEach(function(producto) {
-      var precioTexto = producto.querySelector(".producto__price").textContent;
-      var precioNumerico = parseFloat(precioTexto.replace("$", "").replace(",", ""));
-      total += precioNumerico;
-  });
-  return total;
-}
+    function vaciarCarrito() {
+        localStorage.removeItem("productosEnCarrito");
+        localStorage.setItem("cantidadEnCarrito", "0");
 
-// Llama a la función para mostrar el total cuando se cargue la página
-window.addEventListener("DOMContentLoaded", function() {
-  mostrarTotalProductos();
-});
+        cantidadEnCarrito = 0;
+        numerito.textContent = "0";
 
+        var productosEnCarritoContainer = document.getElementById("productos-en-carrito-container");
+        productosEnCarritoContainer.innerHTML = "";
 
-function agregarAlCarritoVisual(producto) {
-  var nuevoProducto = document.createElement("div");
-  nuevoProducto.classList.add("product", "producto-en-carrito");
-  nuevoProducto.innerHTML = `
-  <div class="product" style="width: 14rem">
-      <img src="adidas/ad1.png" alt="" class="img-product" />
-      <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
-      <div class="producto__description">
-          <h6 class="product_categoria">ADIDAS</h6>
-          <h5 class="product__title">MEDIUM</h5>
-          <h5 class="product__title">ROJA</h5>
-          <span class="producto__price">$99.990</span>
-      </div>
-  </div>
-  `;
-  var productosEnCarritoContainer = document.getElementById("productos-en-carrito-container");
-  productosEnCarritoContainer.appendChild(nuevoProducto);
-}
+        mostrarTotalProductos();
+    }
 
-document.addEventListener("DOMContentLoaded", function() {
-  var productosEnCarritoContainer = document.getElementById("productos-en-carrito-container");
-  var numerito = document.getElementById("numerito");
-  var vaciarBtn = document.querySelector(".boton-vaciar-carrito");
+    function actualizarVisualCarrito() {
+        var productosEnCarritoContainer = document.getElementById("productos-en-carrito-container");
+        productosEnCarritoContainer.innerHTML = "";
 
-  function vaciarCarrito() {
-      if (productosEnCarritoContainer.children.length === 0) {
-          alert("Por favor, realice una compra.");
-          window.location.href = "{% url 'carrito' %}";
-          return;
-      }
+        var productosEnCarrito = JSON.parse(localStorage.getItem("productosEnCarrito")) || [];
 
-      productosEnCarritoContainer.innerHTML = "";
-      var cantidadEnCarrito = 0;
-      numerito.textContent = cantidadEnCarrito;
-      localStorage.removeItem("productosEnCarrito");
-      localStorage.setItem("cantidadEnCarrito", cantidadEnCarrito);
+        productosEnCarrito.forEach(function(producto) {
+            var fila = document.createElement("tr");
 
-      mostrarTotalProductos();
-  }
+            var tdImagen = document.createElement("td");
+            var img = document.createElement("img");
+            img.src = producto.imagen;
+            img.alt = producto.nombre;
+            tdImagen.appendChild(img);
+            fila.appendChild(tdImagen);
 
-  vaciarBtn.addEventListener("click", vaciarCarrito);
+            var tdNombre = document.createElement("td");
+            tdNombre.textContent = producto.nombre;
+            fila.appendChild(tdNombre);
 
-  var productosEnCarrito = JSON.parse(localStorage.getItem("productosEnCarrito")) || [];
-  var cantidadEnCarrito = productosEnCarrito.length;
-  numerito.textContent = cantidadEnCarrito;
+            var tdPrecio = document.createElement("td");
+            tdPrecio.textContent = formatearCLP(producto.totalPrecio);
+            fila.appendChild(tdPrecio);
 
-  productosEnCarrito.forEach(function(productoHTML) {
-      var nuevoProducto = document.createElement("div");
-      nuevoProducto.innerHTML = productoHTML;
-      var boton = nuevoProducto.querySelector(".fa-sharp.fa-solid.fa-cart-plus");
-      if (boton) {
-          boton.remove();
-      }
-      productosEnCarritoContainer.appendChild(nuevoProducto);
-  });
-});
+            var tdCantidad = document.createElement("td");
+            var inputCantidad = document.createElement("input");
+            inputCantidad.type = "number";
+            inputCantidad.min = "1";
+            inputCantidad.value = producto.cantidad;
+            inputCantidad.dataset.id = producto.id;
+            inputCantidad.addEventListener("change", actualizarCantidadProducto);
+            tdCantidad.appendChild(inputCantidad);
+            fila.appendChild(tdCantidad);
 
-document.querySelectorAll('.fa-sharp.fa-solid.fa-cart-plus').forEach(function(boton) {
-  boton.addEventListener('click', function() {
-      var nombreProducto = this.closest('.card').querySelector('h3').textContent;
-      alert("Su producto " + nombreProducto + " se ha agregado al carrito");
-  });
+            productosEnCarritoContainer.appendChild(fila);
+        });
+
+        mostrarTotalProductos();
+    }
+
+    function actualizarCantidadProducto() {
+        var nuevoValor = parseInt(this.value);
+        var productoId = this.dataset.id;
+        var productosEnCarrito = JSON.parse(localStorage.getItem("productosEnCarrito")) || [];
+
+        var producto = productosEnCarrito.find(p => p.id === productoId);
+        if (producto) {
+            cantidadEnCarrito += nuevoValor - producto.cantidad;
+            producto.cantidad = nuevoValor;
+            producto.totalPrecio = producto.precio * nuevoValor;
+
+            localStorage.setItem("cantidadEnCarrito", cantidadEnCarrito);
+            localStorage.setItem("productosEnCarrito", JSON.stringify(productosEnCarrito));
+
+            numerito.textContent = cantidadEnCarrito;
+            actualizarVisualCarrito();
+        }
+    }
+
+    function mostrarTotalProductos() {
+        var total = calcularTotalProductos();
+        var totalElemento = document.getElementById("total");
+        totalElemento.textContent = "Total: " + formatearCLP(total);
+    }
+
+    function calcularTotalProductos() {
+        var productos = JSON.parse(localStorage.getItem("productosEnCarrito")) || [];
+        var total = 0;
+        productos.forEach(function(producto) {
+            total += producto.totalPrecio;
+        });
+        return total;
+    }
+
+    function formatearCLP(numero) {
+        return '$' + numero.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    actualizarVisualCarrito();
 });

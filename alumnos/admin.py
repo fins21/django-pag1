@@ -1,7 +1,6 @@
 from django.contrib import admin
-from .models import Genero,Alumno
+from django.contrib.auth.admin import UserAdmin
+from .models import Usuario, Producto, Genero, Alumno  # Importa todos tus modelos aquí
 
-# Register your models here.
-
-admin.site.register(Genero)
-admin.site.register(Alumno)
+admin.site.register(Usuario, UserAdmin)
+admin.site.register(Producto)

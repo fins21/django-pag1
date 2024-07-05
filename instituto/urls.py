@@ -26,17 +26,3 @@ urlpatterns = [
     # Agrega una nueva ruta para la URL raíz aquí
     path('', index, name='home'),
 ]
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('alumnos/', include('alumnos.urls')),
-    # Agrega una nueva ruta para la URL raíz aquí
-    path('', nosotros, name='home'),
-]
-
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('alumnos/', include('alumnos.urls')),
-    # Agrega una nueva ruta para la URL raíz aquí
-    path('', registro, name='home'),
-]
