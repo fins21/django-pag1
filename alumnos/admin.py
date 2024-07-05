@@ -1,6 +1,12 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-from .models import Usuario, Producto, Genero, Alumno  # Importa todos tus modelos aquí
+from .models import Producto, Credenciales, Usuario # Importa todos tus modelos aquí
+from .models import Producto, MensajeContacto
+from . import views
 
-admin.site.register(Usuario, UserAdmin)
-admin.site.register(Producto)
+@admin.register(Credenciales)
+class CredencialesAdmin(admin.ModelAdmin):
+    list_display = ['username']
+    search_fields = ['username']
+admin.site.register(Usuario)
+
+

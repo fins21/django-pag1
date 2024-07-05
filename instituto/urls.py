@@ -16,13 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 # Asegúrate de importar la vista adecuada
-from alumnos.views import index
-from alumnos.views import nosotros
-from alumnos.views import registro
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('alumnos/', include('alumnos.urls')),
+    path('', include('alumnos.urls')),
     # Agrega una nueva ruta para la URL raíz aquí
-    path('', index, name='home'),
 ]

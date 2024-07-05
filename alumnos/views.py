@@ -1,8 +1,20 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from .models import Producto, Usuario
+from .models import Producto
 from django.contrib.auth.forms import UserCreationForm
-from .forms import RegistroForm
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse, HttpResponseRedirect
+import json
+from .models import Producto, MensajeContacto, Credenciales
+from django.core.mail import send_mail
+from django.core.exceptions import ObjectDoesNotExist
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.contrib import messages
+from django.contrib.auth import authenticate, login
+from .forms import UsuarioForm
+
+
 
 def index(request):
     productos = Producto.objects.all()[:6]  # Mostrar los primeros 6 productos
@@ -30,14 +42,18 @@ def nike(request):
     productos = Producto.objects.filter(marca='NIKE')
     return render(request, 'alumnos/nike.html', {'productos': productos})
 
-def registro(request):
+
+from django.contrib.auth.hashers import make_password
+
+def registro_usuario(request):
     if request.method == 'POST':
-        form = RegistroForm(request.POST)
+        form = UsuarioForm(request.POST)
         if form.is_valid():
             usuario = form.save(commit=False)
-            usuario.clean()
+            usuario.contraseña = make_password(form.cleaned_data['contraseña'])
             usuario.save()
-            return redirect('login')
+            # Redirige al usuario a donde desees después del registro exitoso
+            return redirect('index')
     else:
-        form = RegistroForm()
-    return render(request, 'alumnos/registro.html', {'form': form})
+        form = UsuarioForm()
+    return render(request, 'alumnos/RegistroUsuario.html', {'form': form})

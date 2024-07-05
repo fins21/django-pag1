@@ -1,0 +1,69 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+*::-webkit-scrollbar {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    display: none;
+}
+/* tipo de letra*/
+body {
+    font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.logo_grande {
+    position: absolute;
+    z-index: 1;
+    top: 30px;
+    left: 40px;
+    height: 7vh;
+}
+.navbar {
+    display: flex;
+    margin-right: 20px;
+    
+}
+.boton-carrito {
+    margin-left: 10px;
+    margin-top: 10px;
+    font-size: 20px;    
+    border-radius: 50%;
+    padding: 5px;
+    text-decoration:none; /* Elimina el subrayado de los enlaces */
+    color: #000;
+}
+.boton-carrito:hover {
+    color: rgb(146, 159, 186);
+}
+
+
+nav {
+    display: inline-block;
+    margin: 0 30px;
+    padding: 15px;
+    font-weight: 700;
+    justify-content: space-between;
+    border-radius: 160px;
+}
+@media (max-width: 768px) {
+    nav {
+        border-radius: 0px;
+    }
+}
+nav ul a {
+    border-radius: 110px; /* Aplica border-radius constantemente */
+}
+@media (max-width: 768px) {
+    nav ul a {
+        display: none; /* Aplica border-radius constantemente */
+    }
+}
+nav ul a:hover {
+    background-color: rgb(146, 159, 186);
+    color: #fff;
+}
+
+.navbar-nav .nav-item {
+      margin-right: 180px; /* Ajusta el espacio a tu preferencia */
+}

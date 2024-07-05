@@ -1,24 +1,14 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
-class Usuario(AbstractUser):
+class Usuario(models.Model):
+    nombre = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
     telefono = models.CharField(max_length=15)
-    
-    # Añadir related_name para evitar conflictos
-    groups = models.ManyToManyField(
-        'auth.Group',
-        related_name='usuario_set',
-        blank=True,
-        verbose_name='groups',
-        help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
-    )
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        related_name='usuario_set',
-        blank=True,
-        verbose_name='user permissions',
-        help_text='Specific permissions for this user.',
-    )
+    contraseña = models.CharField(max_length=100)
+
+    def str(self):
+        return self.nombre
 
 class Producto(models.Model):
     MARCAS = [
@@ -36,24 +26,43 @@ class Producto(models.Model):
     def __str__(self):
         return self.nombre
 
-class Genero(models.Model):
-    id_genero = models.AutoField(db_column='idGenero', primary_key=True) 
-    genero = models.CharField(max_length=20, blank=False, null=False)
+class MensajeContacto(models.Model):
+    nombre = models.CharField(max_length=100)
+    email = models.EmailField()
+    asunto = models.CharField(max_length=200)
+    mensaje = models.TextField()
+    fecha_envio = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return str(self.genero)
+        return f'{self.nombre} - {self.asunto}'
 
-class Alumno(models.Model):
-    rut = models.CharField(primary_key=True, max_length=10)
-    nombre = models.CharField(max_length=20)
-    apellido_paterno = models.CharField(max_length=20)
-    apellido_materno = models.CharField(max_length=20)
-    fecha_nacimiento = models.DateField(blank=False, null=False) 
-    id_genero = models.ForeignKey(Genero, on_delete=models.CASCADE, db_column='idGenero')  
-    telefono = models.CharField(max_length=45)
-    email = models.EmailField(unique=True, max_length=100, blank=True, null=True)
-    direccion = models.CharField(max_length=50, blank=True, null=True)  
-    activo = models.IntegerField()
+class CustomUserManager(BaseUserManager):
+    def create_user(self, username, password=None, **extra_fields):
+        if not username:
+            raise ValueError('El nombre de usuario debe ser establecido')
+        user = self.model(
+            username=username,
+            **extra_fields
+        )
+        user.set_password(password)
+        user.save(using=self._db)
+        return user
+
+    def create_superuser(self, username, password=None, **extra_fields):
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+
+        return self.create_user(username, password, **extra_fields)
+
+class Credenciales(AbstractBaseUser, PermissionsMixin):
+    username = models.CharField(max_length=100, unique=True)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+
+    USERNAME_FIELD = 'username'
+    REQUIRED_FIELDS = []
+
+    objects = CustomUserManager()
 
     def __str__(self):
-        return f"{self.nombre} {self.apellido_paterno}"
+        return self.username
