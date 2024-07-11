@@ -32,16 +32,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Marcas
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{% url 'nike' %}">Nike</a></li>
-                                <li><a class="dropdown-item" href="{% url 'adidas' %}">Adidas</a></li>
-                                <li><a class="dropdown-item" href="{% url 'vans' %}">Vans</a></li>                                                               
-                                <li><a class="dropdown-item" href="{% url 'new' %}">New BALANCE</a></li>
-                            </ul>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'adidas' %}">Catalogo</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'RegistroUsuario' %}">Registro</a>
@@ -89,7 +81,7 @@
             <div class="carousel-caption top-0 mt-4 d-none d-md-block  ">
     
             <h2 class="c__txt">Felicidad es… Lucir zapatos increíbles.</h2>
-            <a href="{% url 'nike' %}" class="carousel__link">COMPRAR</a>
+            <a href="{% url 'adidas' %}" class="carousel__link">COMPRAR</a>
             </div>
         </div>
     
@@ -99,7 +91,7 @@
             <div class="carousel-caption top-0 mt-4 d-none d-md-block ">
     
             <h2 class="c__txt">Variedad de Marcas</h2>
-            <a href="{% url 'new' %}" class="carousel__link">COMPRAR</a>
+            <a href="{% url 'adidas' %}" class="carousel__link">COMPRAR</a>
             </div>
         </div>
     
@@ -108,7 +100,7 @@
             alt=""><!--c-img es un nombre para controlar el tamaño de la imagen-->
             <div class="carousel-caption top-0 mt-4 d-none d-md-block  ">
             <h2 class="c__txt">zapatillas de todos los estilos</h2>
-            <a href="{% url 'vans' %}" class="carousel__link">COMPRAR</a>
+            <a href="{% url 'adidas' %}" class="carousel__link">COMPRAR</a>
             </div>
         </div>
     
@@ -167,7 +159,7 @@
             <div class="producto__description">
               <h3 class="product__title">NIKE</h3>
             </div>
-            <a href="{% url 'nike' %}" class="ver__link">VER TODO
+            <a href="{% url 'adidas' %}" class="ver__link">VER TODO
               <i class="fa-solid fa-arrow-right"></i> </a>
           </div>
         
@@ -185,7 +177,7 @@
           <div class="producto__description">
             <h3 class="product__title">NEW BALANCE</h3>
           </div>
-          <a href="{% url 'new' %}" class="ver__link">VER TODO
+          <a href="{% url 'adidas' %}" class="ver__link">VER TODO
             <i class="fa-solid fa-arrow-right"></i> </a>
         </div>
         
@@ -204,7 +196,7 @@
             <h3 class="product__title">VANS</h3>
           </div>
         
-          <a href="{% url 'vans' %}" class="ver__link">VER TODO
+          <a href="{% url 'adidas' %}" class="ver__link">VER TODO
             <i class="fa-solid fa-arrow-right"></i> </a>
 
         </div>

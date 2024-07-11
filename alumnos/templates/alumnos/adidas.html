@@ -38,17 +38,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'nosotros' %}">Nosotros</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Marcas
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <li><a class="dropdown-item" href="{% url 'nike' %}">Nike</a></li>
-                            <li><a class="dropdown-item" href="{% url 'adidas' %}">Adidas</a></li>
-                            <li><a class="dropdown-item" href="{% url 'vans' %}">Vans</a></li>                                                               
-                            <li><a class="dropdown-item" href="{% url 'new' %}">New BALANCE</a></li>
-                        </ul>
-                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'adidas' %}">Catalogo</a>
+                  </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'RegistroUsuario' %}">Registro</a>
                     </li>
@@ -76,208 +68,219 @@
         </div>
     </nav>
 </header>
-    <main>
-      <div id="addToCartBtn" class="card-container row row-cols-1 row-cols-md-2 row-cols-lg-3 g-0 py-5 mt-5">
-        <div class="product" data-id="1" style="width: 14rem" id="adidas-product1">
+    <main>      
+      {% for producto in productos %}
+      <div id="addToCartBtn" class="card-container row row-cols-1 row-cols-md-2 row-cols-lg-3 g-0 py-5 mt-5">        
+        <div class="product" data-id="4" style="width: 14rem" id="producto-4">
           <img src="{% static 'adidas/ad1.png' %}" alt="" class="img-product" />
-          <span
-            class="badge bg-secondary position-absolute translate-middle bg-warning"
-          ></span>
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
           <div class="producto__description">
             <h6 class="product_categoria">ADIDAS</h6>
-            <h5 class="product__title">MEDIUM</h5>
-            <h5 class="product__title">ROJA</h5>
-            <p class="producto__price">$99.990</p>
-            <button class="fa-sharp fa-solid fa-cart-plus">
+            <h5 class="product__title" data-nombre="Adidas Mid Rojo">Mid Roja</h5>
+            <span class="producto__price" data-precio="99990">$99990</span>
+            <button class="fa-sharp fa-solid fa-cart-plus btn-agregar-carrito"data-id="4">
+              <i class="btn-agregar-carrito"></i>
               <strong> AGREGAR AL CARRITO </strong>
             </button>
           </div>
         </div>
-        <div class="product" data-id="2" style="width: 14rem" id="adidas-product2">
-            <img src="{% static 'adidas/ad2.png' %}" alt="" class="img-product" />
-            <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
-            <div class="producto__description">
-                <h6 class="product_categoria">ADIDAS</h6>
-                <h5 class="product__title">MEDIUM</h5>
-                <h5 class="product__title">NEGRA</h5>
-                <span class="producto__price">$90990</span>
-                <button class="fa-sharp fa-solid fa-cart-plus">
-                    <strong> AGREGAR AL CARRITO </strong>
-                </button>
-            </div>
-        </div>
-        <div class="product" data-id="3" style="width: 14rem" id="adidas-product3">
-            <img src="{% static 'adidas/ad3.png' %}" alt="" class="img-product" />
-            <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
-            <div class="producto__description">
-                <h6 class="product_categoria">ADIDAS</h6>
-                <h5 class="product__title">MEDIUM</h5>
-                <h5 class="product__title">CREMA</h5>
-                <span class="producto__price">$80990</span>
-                <button class="fa-sharp fa-solid fa-cart-plus">
-                    <strong> AGREGAR AL CARRITO </strong>
-                </button>
-            </div>
-        </div>
-        <div class="product" data-id="4" style="width: 14rem" id="adidas-product4">
-            <img src="{% static 'adidas/ad4.png' %}" alt="" class="img-product" />
-            <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
-            <div class="producto__description">
-                <h6 class="product_categoria">ADIDAS</h6>
-                <h5 class="product__title">MEDIUM</h5>
-                <h5 class="product__title">VERDE OSCURO</h5>
-                <span class="producto__price">$90990</span>
-                <button class="fa-sharp fa-solid fa-cart-plus">
-                    <strong> AGREGAR AL CARRITO </strong>
-                </button>
-            </div>
-        </div>
         <div class="product" data-id="5" style="width: 14rem" id="adidas-product5">
-            <img src="{% static 'adidas/ad5.png' %}" alt="" class="img-product" />
-            <div class="producto__description">
-                <h6 class="product_categoria">ADIDAS</h6>
-                <h5 class="product__title">MEDIUM</h5>
-                <h5 class="product__title">BLANCA</h5>
-                <span class="producto__price">$90990</span>
-                <button class="fa-sharp fa-solid fa-cart-plus">
-                    <strong> AGREGAR AL CARRITO </strong>
-                </button>
-            </div>
-        </div>
-        <div class="product" data-id="6" style="width: 14rem" id="adidas-product6">
-            <img src="{% static 'adidas/ad6.png' %}" alt="" class="img-product" />
-            <div class="producto__description">
-                <h6 class="product_categoria">ADIDAS</h6>
-                <h5 class="product__title">MEDIUM</h5>
-                <h5 class="product__title">NEGRA</h5>
-                <span class="producto__price">$140990</span>
-                <button class="fa-sharp fa-solid fa-cart-plus">
-                    <strong> AGREGAR AL CARRITO </strong>
-                </button>
-            </div>
-        </div>
-        <div class="product" data-id="7" style="width: 14rem" id="adidas-product7">
-            <img src="{% static 'adidas/ad7.png' %}" alt="" class="img-product" />
-            <div class="producto__description">
-                <h6 class="product_categoria">ADIDAS</h6>
-                <h5 class="product__title">MEDIUM</h5>
-                <h5 class="product__title">BLANCA</h5>
-                <span class="producto__price">$130.990</span>
-                <button class="fa-sharp fa-solid fa-cart-plus">
-                    <strong> AGREGAR AL CARRITO </strong>
-                </button>
-            </div>
-        </div>
-        <div class="product" data-id="8" style="width: 14rem" id="adidas-product8">
-            <img src="{% static 'adidas/ad8.png' %}" alt="" class="img-product" />
-            <div class="producto__description">
-                <h6 class="product_categoria">ADIDAS</h6>
-                <h5 class="product__title">MEDIUM</h5>
-                <h5 class="product__title">AZUL</h5>
-                <span class="producto__price">$80.990</span>
-                <button class="fa-sharp fa-solid fa-cart-plus">
-                    <strong> AGREGAR AL CARRITO </strong>
-                </button>
-            </div>
-        </div>
-        <div class="product" data-id="9" style="width: 14rem" id="adidas-product9">
-            <img src="{% static 'adidas/ad9.png' %}" alt="" class="img-product" />
-            <div class="producto__description">
-                <h6 class="product_categoria">ADIDAS</h6>
-                <h5 class="product__title">MEDIUM</h5>
-                <h5 class="product__title">ROJA</h5>
-                <span class="producto__price">$70.990</span>
-                <button class="fa-sharp fa-solid fa-cart-plus">
-                    <strong> AGREGAR AL CARRITO </strong>
-                </button>
-            </div>
-        </div>
-        <div class="product" data-id="10" style="width: 14rem" id="adidas-product10">
-            <img src="{% static 'adidas/ad10.png' %}" alt="" class="img-product" />
-            <div class="producto__description">
-                <h6 class="product_categoria">ADIDAS</h6>
-                <h5 class="product__title">MEDIUM</h5>
-                <h5 class="product__title">NEGRA</h5>
-                <span class="producto__price">$80.990</span>
-                <button class="fa-sharp fa-solid fa-cart-plus">
-                    <strong> AGREGAR AL CARRITO </strong>
-                </button>
-            </div>
-        </div>
-        <div class="product" data-id="11" style="width: 14rem" id="adidas-product11">
-            <img src="{% static 'adidas/ad11.png' %}" alt="" class="img-product" />
-            <div class="producto__description">
-                <h6 class="product_categoria">ADIDAS</h6>
-                <h5 class="product__title">MEDIUM</h5>
-                <h5 class="product__title">CELESTE</h5>
-                <span class="producto__price">$140.990</span>
-                <button class="fa-sharp fa-solid fa-cart-plus">
-                    <strong> AGREGAR AL CARRITO </strong>
-                </button>
-            </div>
-        </div>
-        <div class="product" data-id="12" style="width: 14rem" id="adidas-product12">
-            <img src="{% static 'adidas/ad12.png' %}" alt="" class="img-product" />
-            <div class="producto__description">
-                <h6 class="product_categoria">ADIDAS</h6>
-                <h5 class="product__title">MEDIUM</h5>
-                <h5 class="product__title">VERDE OSCURO</h5>
-                <span class="producto__price">$100.990</span>
-                <button class="fa-sharp fa-solid fa-cart-plus">
-                    <strong> AGREGAR AL CARRITO </strong>
-                </button>
-            </div>
-        </div>
-        <div class="product" data-id="13" style="width: 14rem" id="adidas-product13">
-            <img src="{% static 'adidas/ad13.png' %}" alt="" class="img-product" />
-            <div class="producto__description">
-                <h6 class="product_categoria">ADIDAS</h6>
-                <h5 class="product__title">MEDIUM</h5>
-                <h5 class="product__title">BLANCA</h5>
-                <span class="producto__price">$140.990</span>
-                <button class="fa-sharp fa-solid fa-cart-plus">
-                    <strong> AGREGAR AL CARRITO </strong>
-                </button>
-            </div>
-        </div>
-        <div class="product" data-id="14" style="width: 14rem" id="adidas-product14">
-            <img src="{% static 'adidas/ad14.png' %}" alt="" class="img-product" />
-            <div class="producto__description">
-                <h6 class="product_categoria">ADIDAS</h6>
-                <h5 class="product__title">MEDIUM</h5>
-                <h5 class="product__title">BLANCA</h5>
-                <span class="producto__price">$70.990</span>
-                <button class="fa-sharp fa-solid fa-cart-plus">
-                    <strong> AGREGAR AL CARRITO </strong>
-                </button>
-            </div>
-        </div>
-        <div class="product" data-id="15" style="width: 14rem" id="adidas-product15">
-            <img src="{% static 'adidas/ad15.png' %}" alt="" class="img-product" />
-            <div class="producto__description">
-                <h6 class="product_categoria">ADIDAS</h6>
-                <h5 class="product__title">MEDIUM</h5>
-                <h5 class="product__title">MORADA</h5>
-                <span class="producto__price">$80.990</span>
-                <button id="addToCartBtn" class="fa-sharp fa-solid fa-cart-plus">
-                    <strong> AGREGAR AL CARRITO </strong>
-                </button>
-            </div>
-        </div>
-        <div class="product" data-id="16" style="width: 14rem" id="adidas-product16">
-            <img src="{% static 'adidas/ad16.png' %}" alt="" class="img-product" />
-            <div class="producto__description">
-                <h6 class="product_categoria">ADIDAS</h6>
-                <h5 class="product__title">MEDIUM</h5>
-                <h5 class="product__title">BLANCA</h5>
-                <span class="producto__price">$80.990</span>
-                <button class="fa-sharp fa-solid fa-cart-plus">
-                    <strong> AGREGAR AL CARRITO </strong>
-                </button>
-            </div>
-        </div>
+          <img src="{% static 'adidas/ad2.png' %}" alt="" class="img-product" />
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+          <div class="producto__description">
+              <h6 class="product_categoria">ADIDAS</h6>
+              <h5 class="product__title" data-nombre="Adidas Mid Negro">Mid Negra</h5>
+              <span class="producto__price" data-precio="90990">$90990</span>
+              <button class="fa-sharp fa-solid fa-cart-plus btn-agregar-carrito" data-id="5">
+                <i class="btn-agregar-carrito"></i>
+                  <strong> AGREGAR AL CARRITO </strong>
+              </button>
+          </div>
+      </div>
+      <div class="product" data-id="6" style="width: 14rem" id="adidas-product6">
+          <img src="{% static 'adidas/ad3.png' %}" alt="" class="img-product" />
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+          <div class="producto__description">
+              <h6 class="product_categoria">ADIDAS</h6>
+              <h5 class="product__title" data-nombre="Adidas Mid Marfil">Mid Marfil</h5>
+              <span class="producto__price" data-precio="80990">$80990</span>
+              <button class="fa-sharp fa-solid fa-cart-plus btn-agregar-carrito" data-id="6">
+                <i class="btn-agregar-carrito"></i>
+                  <strong> AGREGAR AL CARRITO </strong>
+              </button>
+          </div>
+      </div>
+      <div class="product" data-id="7" style="width: 14rem" id="adidas-product7">
+          <img src="{% static 'adidas/ad4.png' %}" alt="" class="img-product" />
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+          <div class="producto__description">
+              <h6 class="product_categoria">ADIDAS</h6>
+              <h5 class="product__title" data-nombre="Adidas Mid Cafe">Mid Cafe</h5>
+              <span class="producto__price" data-precio="90990">$90990</span>
+              <button class="fa-sharp fa-solid fa-cart-plus btn-agregar-carrito" data-id="7">
+                <i class="btn-agregar-carrito"></i>
+                  <strong> AGREGAR AL CARRITO </strong>
+              </button>
+          </div>
+      </div>
+      <div class="product" data-id="8" style="width: 14rem" id="nike-product8">
+          <img src="{% static 'nike/ni1.png' %}" alt="" class="img-product" /><br></br><br></br>
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+          <div class="producto__description">
+              <h6 class="product_categoria">NIKE</h6>
+              <h5 class="product__title" data-nombre="Nike High Gris">High Gris</h5>
+              <span class="producto__price" data-precio="199990">$199.990</span>
+              <button class="fa-sharp fa-solid fa-cart-plus btn-agregar-carrito" data-id="8">
+                  <i class="btn-agregar-carrito" ></i>
+                  <strong> AGREGAR AL CARRITO </strong>
+              </button>
+          </div>
+      </div>
+      <div class="product" data-id="9" style="width: 14rem" id="nike-product9">
+          <img src="{% static 'nike/ni2.png' %}" alt="" class="img-product" /><br></br><br></br>
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+          <div class="producto__description">
+              <h6 class="product_categoria">NIKE</h6>
+              <h5 class="product__title" data-nombre="Nike Mid Negro">Mid Negra</h5>
+              <span class="producto__price" data-precio="99990">$99.990</span>
+              <button class="fa-sharp fa-solid fa-cart-plus btn-agregar-carrito" data-id="9">
+                  <i class="btn-agregar-carrito" ></i>
+                  <strong> AGREGAR AL CARRITO </strong>
+              </button>
+          </div>
+      </div>
+      <div class="product" data-id="10" style="width: 14rem" id="nike-product10">
+          <img src="{% static 'nike/ni3.png' %}" alt="" class="img-product" /><br></br><br></br>
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+          <div class="producto__description">
+              <h6 class="product_categoria">NIKE</h6>
+              <h5 class="product__title" data-nombre="Nike Mid Morada">Mid Morada</h5>
+              <span class="producto__price" data-precio="190990">$190.990</span>
+              <button class="fa-sharp fa-solid fa-cart-plus btn-agregar-carrito" data-id="10">
+                  <i class="btn-agregar-carrito" ></i>
+                  <strong> AGREGAR AL CARRITO </strong>
+              </button>
+          </div>
+      </div>
+      <div class="product" data-id="11" style="width: 14rem" id="nike-product11">
+          <img src="{% static 'nike/ni4.png' %}" alt="" class="img-product" /><br></br><br></br>
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+          <div class="producto__description">
+              <h6 class="product_categoria">NIKE</h6>
+              <h5 class="product__title" data-nombre="Nike Mid Marfil">Mid Marfil</h5>
+              <span class="producto__price" data-precio="140990">$140.990</span>
+              <button class="fa-sharp fa-solid fa-cart-plus btn-agregar-carrito" data-id="11">
+                  <i class="btn-agregar-carrito" ></i>
+                  <strong> AGREGAR AL CARRITO </strong>
+              </button>
+          </div>
+      </div>
+      <div class="product" data-id="12" style="width: 14rem" id="new-product12">
+          <img src="{% static 'new/new-1.png' %}" alt="" class="img-product" /><br></br><br></br>
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+          <div class="producto__description">
+              <h6 class="product_categoria">NEW BALANCE</h6>
+              <h5 class="product__title" data-nombre="NewBalance Mid Azul Marino">Mid Azul Marino</h5>
+              <span class="producto__price" data-precio="99990">$99.990</span>
+              <button class="fa-sharp fa-solid fa-cart-plus btn-agregar-carrito" data-id="12">
+                  <i class="btn-agregar-carrito" ></i>
+                  <strong> AGREGAR AL CARRITO </strong>
+              </button>
+          </div>
+      </div>
+      <div class="product" data-id="13" style="width: 14rem" id="new-product13">
+          <img src="{% static 'new/new-2.png' %}" alt="" class="img-product" /><br></br><br></br>
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+          <div class="producto__description">
+              <h6 class="product_categoria">NEW BALANCE</h6>
+              <h5 class="product__title" data-nombre="NewBalance Mid Negra">Mid Negra</h5>
+              <span class="producto__price" data-precio="90990">$90.990</span>
+              <button class="fa-sharp fa-solid fa-cart-plus btn-agregar-carrito" data-id="13">
+                  <i class="btn-agregar-carrito" ></i>
+                  <strong> AGREGAR AL CARRITO </strong>
+              </button>
+          </div>
+      </div>
+      <div class="product" data-id="14" style="width: 14rem" id="new-product14">
+          <img src="{% static 'new/new3.png' %}" alt="" class="img-product" /><br></br><br></br>
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+          <div class="producto__description">
+              <h6 class="product_categoria">NEW BALANCE</h6>
+              <h5 class="product__title" data-nombre="NewBalance Mid Gris">Mid Gris</h5>
+              <span class="producto__price" data-precio="90990">$90.990</span>
+              <button class="fa-sharp fa-solid fa-cart-plus btn-agregar-carrito" data-id="14">
+                  <i class="btn-agregar-carrito" ></i>
+                  <strong> AGREGAR AL CARRITO </strong>
+              </button>
+          </div>
+      </div>
+      <div class="product" data-id="15" style="width: 14rem" id="new-product15">
+          <img src="{% static 'new/new4.png' %}" alt="" class="img-product" /> <br></br><br></br>
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+          <div class="producto__description">
+              <h6 class="product_categoria">NEW BALANCE</h6>
+              <h5 class="product__title" data-nombre="NewBalance Mid Azul">Mid Azul</h5>
+              <span class="producto__price" data-precio="80990">$80.990</span>
+              <button class="fa-sharp fa-solid fa-cart-plus btn-agregar-carrito" data-id="15">
+                  <i class="btn-agregar-carrito" ></i>
+                  <strong> AGREGAR AL CARRITO </strong>
+              </button>
+          </div>
+      </div>
+      <div class="product" data-id="16" style="width: 14rem" id="vans-product16">
+          <img src="{% static 'vans/vans-1.png' %}" alt="" class="img-product" /><br></br><br></br>
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+          <div class="producto__description">
+              <h6 class="product_categoria">VANS</h6>
+              <h5 class="product__title" data-nombre="Vans Low Azul">Low Azul</h5>
+              <span class="producto__price" data-precio="99990">$99.990</span>
+              <button class="fa-sharp fa-solid fa-cart-plus btn-agregar-carrito" data-id="16">
+                  <i class="btn-agregar-carrito" ></i>
+                  <strong> AGREGAR AL CARRITO </strong>
+              </button>
+          </div>
+      </div>
+      <div class="product" data-id="17" style="width: 14rem" id="vans-product17">
+          <img src="{% static 'vans/vans-2.png' %}" alt="" class="img-product" /><br></br><br></br>
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+          <div class="producto__description">
+              <h6 class="product_categoria">VANS</h6>
+              <h5 class="product__title" data-nombre="Vans Mid Negra">Mid Negra</h5>
+              <span class="producto__price" data-precio="90990">$90.990</span>
+              <button class="fa-sharp fa-solid fa-cart-plus btn-agregar-carrito" data-id="17">
+                  <i class="btn-agregar-carrito" ></i>
+                  <strong> AGREGAR AL CARRITO </strong>
+              </button>
+          </div>
+      </div>
+      <div class="product" data-id="18" style="width: 14rem" id="vans-product18">
+          <img src="{% static 'vans/vans3.png' %}" alt="" class="img-product" /><br></br><br></br>
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+          <div class="producto__description">
+              <h6 class="product_categoria">VANS</h6>
+              <h5 class="product__title" data-nombre="Vans Mid Verde">Mid Verde</h5>
+              <span class="producto__price" data-precio="90990">$90.990</span>
+              <button class="fa-sharp fa-solid fa-cart-plus btn-agregar-carrito" data-id="18">
+                  <i class="btn-agregar-carrito" ></i>
+                  <strong> AGREGAR AL CARRITO </strong>
+              </button>
+          </div>
+      </div>
+      <div class="product" data-id="19" style="width: 14rem" id="vans-product19">
+          <img src="{% static 'vans/vans4.png' %}" alt="" class="img-product" /><br></br><br></br>
+          <span class="badge bg-secondary position-absolute translate-middle bg-warning"></span>
+          <div class="producto__description">
+              <h6 class="product_categoria">VANS</h6>
+              <h5 class="product__title" data-nombre="Vans Low Roja">Low Roja</h5>
+              <span class="producto__price" data-precio="80990">$80.990</span>
+              <button class="fa-sharp fa-solid fa-cart-plus btn-agregar-carrito" data-id="19">
+                  <i class="btn-agregar-carrito" ></i>
+                  <strong> AGREGAR AL CARRITO </strong>
+              </button>
+          </div>
+      </div>
     </div>
-    </div>
+    {% endfor %}
     </main>
     <footer
       class="text-center text-lg-start text-white"

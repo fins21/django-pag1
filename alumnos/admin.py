@@ -8,5 +8,6 @@ class CredencialesAdmin(admin.ModelAdmin):
     list_display = ['username']
     search_fields = ['username']
 admin.site.register(Usuario)
+admin.site.register(Producto)
 
 

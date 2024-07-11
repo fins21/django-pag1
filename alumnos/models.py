@@ -1,5 +1,29 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.db import models
+
+
+class Producto(models.Model):
+    nombre = models.CharField(max_length=100)
+    precio = models.DecimalField(max_digits=10, decimal_places=0)
+    stock = models.IntegerField()
+    categoria = models.CharField(max_length=50, default='Sin categoría')  # Nuevo campo
+    def __str__(self):
+        return self.nombre
+
+from django.conf import settings
+
+class Compra(models.Model):
+    usuario = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True)
+    fecha = models.DateTimeField(auto_now_add=True)
+    total = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+
+class DetalleCompra(models.Model):
+    compra = models.ForeignKey(Compra, on_delete=models.CASCADE, related_name='detalles')
+    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    cantidad = models.IntegerField()
+    precio_unitario = models.DecimalField(max_digits=10, decimal_places=2)
+    subtotal = models.DecimalField(max_digits=10, decimal_places=2)
 
 class Usuario(models.Model):
     nombre = models.CharField(max_length=100)
@@ -8,22 +32,6 @@ class Usuario(models.Model):
     contraseña = models.CharField(max_length=100)
 
     def str(self):
-        return self.nombre
-
-class Producto(models.Model):
-    MARCAS = [
-        ('NIKE', 'Nike'),
-        ('ADIDAS', 'Adidas'),
-        ('NEW_BALANCE', 'New Balance'),
-        ('VANS', 'Vans'),
-    ]
-    nombre = models.CharField(max_length=100)
-    descripcion = models.TextField()
-    precio = models.DecimalField(max_digits=10, decimal_places=2)
-    cantidad = models.IntegerField()
-    marca = models.CharField(max_length=20, choices=MARCAS)
-
-    def __str__(self):
         return self.nombre
 
 class MensajeContacto(models.Model):
