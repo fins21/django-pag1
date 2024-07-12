@@ -123,14 +123,19 @@ def realizar_compra(request):
         data = json.loads(request.body)
         logger.info(f"Datos recibidos: {data}")
         compra = Compra.objects.create()  # Creamos la compra sin asociarla a un usuario
+        logger.info(f"Compra creada con ID: {compra.id}")
         
         total_compra = 0
         for item in data:
+            logger.info(f"Procesando item: {item}")
             producto = Producto.objects.select_for_update().get(id=item['id'])
             cantidad = int(item['cantidad'])
+            logger.info(f"Producto {producto.id} - Stock actual: {producto.stock}, Cantidad solicitada: {cantidad}")
             if producto.stock >= cantidad:
                 producto.stock -= cantidad
                 producto.save()
+                logger.info(f"Stock actualizado para producto {producto.id}. Nuevo stock: {producto.stock}")
+
                 
                 subtotal = producto.precio * cantidad
                 DetalleCompra.objects.create(
@@ -140,9 +145,12 @@ def realizar_compra(request):
                     precio_unitario=producto.precio,
                     subtotal=subtotal
                 )
-                
+                logger.info(f"Detalle de compra creado: {DetalleCompra.id}")
+
                 total_compra += subtotal
             else:
+                logger.warning(f"Stock insuficiente para producto {producto.id}")
+
                 transaction.set_rollback(True)
                 return JsonResponse({
                     'success': False, 
@@ -151,6 +159,7 @@ def realizar_compra(request):
         
         compra.total = total_compra
         compra.save()
+        logger.info(f"Compra finalizada. Total: {total_compra}")
         
         return JsonResponse({
             'success': True,
@@ -158,6 +167,7 @@ def realizar_compra(request):
             'compra_id': compra.id
         })
     except Producto.DoesNotExist:
+        logger.error(f"Error durante la compra: {str(e)}")
         transaction.set_rollback(True)
         return JsonResponse({'success': False, 'error': 'Producto no encontrado'}, status=404)
     except json.JSONDecodeError:

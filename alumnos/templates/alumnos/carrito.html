@@ -88,23 +88,20 @@
             <div class="custom-div">
               <div id="total-container"><span id="total"></span></div>
               <button class="boton-vaciar-carrito">Vaciar carrito</button>
-              <button id="boton-comprar"class="boton-comprar">Comprar</button>
+              <button id="boton-comprar" class="boton-comprar">Comprar</button>
             </div>
           </div>
         </div>
     </main>
     
     <div id="modal" class="modal">
-        <div class="modal-content">
+      <div class="modal-content">
           <span class="close">&times;</span>
           <h2>¡Gracias!</h2>
           <p>Muchas gracias por tu compra.</p>
           <button class="volver"><a href="{% url 'index' %}">Volver a la página principal</a></button>
-        </div>
-    </div>
-
-    <script>
-    </script>
+      </div>
+    </div>  
     <!-- script carrito -->
     <script src="{% static 'js/carrito.js' %}" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
